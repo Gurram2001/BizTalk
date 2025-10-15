@@ -1,0 +1,81 @@
+BizTalk Topics
+
+1. BizTalk Server Architecture
+2. Components of BizTalk Server :
+3. Types of Subscriptions in BizTalk (Activation & Instance)
+    1. Activation : when ever a new message is received, this will activate or create a new instance of the subscriber.
+    2. Instance : Message should be routed to an already running instance of the subscriber. Request-Response / correalted receives.
+4. Persistence points & Examples of Persistence points
+    1. To allow rehydration of orchestration instance, the orchestration engine saves the entire state of an orchestration instance at various points.
+5. Distinguished Fields
+    1. Can only accessible with in the orchestration.
+6. Promoted Properties
+    1. Can be accessible in all phases like receive port, orch and send ports.
+7. Context Based Routing
+    1. Routing based on the default properties of BizTalk. BTS.ReceivePortName or BTS.MessageType
+8. Content Based Routing
+    1. Routing based on the message. Create a schema, Promote any element (ex. Bank name) in sp : filter condition (applicationName.schemaName.BankName == SBI) --> this will deliver only sbi bank details to this send port.
+9. How to transfer Files without using orchestrations
+10. Parallel Convoy
+    1. Must know about correlation type and correlation set before doing this.
+    2. Mulitple single messages to join together to achieve a required result.
+    3. The set of messages can arrive in any order but BizTalk server must receive them before start of the process.
+11. Sequential convoy
+    1. Multiple single mesaages to join together to archive a required result. But BizTalk server must receive them in sequential order.
+12. Correlation in BizTalk ( Correlation Type & Correlation Set)
+    1. Associating incoming message with the appropriate instance of an orchestration
+    2. For implementing corelations, both input and output messages should have a common filed element and also the common element should be promoted properly.
+13. BizTalk Databases
+    1. Management db - host, host instances
+    2. Rules Engine db
+    3. Tracking db - contains message bodies and promoted properties
+    4. Message box db
+14. BizTalk SQL Jobs ( any 5 )
+15. BizTalk server Rules Engine
+16. "Message Type" in BizTalk server
+    1. Each message must be of a selected message type.
+    2. Common message type is Schema.
+17. How and where "messages" are created in an Orchestration (within Maps in Transform Shape)
+18. Dehydration & Rehydration
+    1. When an Orchestration has been idle for a while, the Orchestration engine will save the state information of the instance and free up memory resources.
+    2. Rehydration : the orchestration engine loads the saved instance of the orchestration into memory, restores the state and runs it from thr point where it left.
+19. Pipeline Stages
+    1. Receive side :
+        1. Decode
+        2. Disassemble
+        3. Validate
+        4. Resolve Party
+    2. Send side :
+        1. Pre assemble
+        2. Assemble
+        3. Encode
+20. Custom Pipeline stages
+    1. IBase Component
+    2. IComponentUI
+    3. IComponent
+    4. IPersistPropertyBag
+    5. IAssembleComponent
+    6. IDisassembleComponent
+    7. IProbeMessage
+21. Host & Host Instances
+22. Different types of Schemas and steps to create( document & flat file schemas are important)
+23. Difference between Call Orchestration and Start Orchestration
+24. Different Shapes in Orchestration ( Message Assignment shape, Expression shape, Listen shape, Delay shape)
+25. Different Adapters in BizTalk (http, https, WCF, SQL, File adapters are important)
+26. Functiods in BizTalk (Value mapping functoids is important ; String, Mathematical, Logic and Scripting functoids)
+27. How to write Xpath expression : Xpath allows you to navigate through the xml document and select a particular value.
+28. Types of Bindings in BizTalk
+    1. Receive port side : Specify now, Specify later, Direct Bindings)
+    2. Send Port Side : Specify now, Specify later, Direct Binding, Dynamic Binding)
+29. Direct binding
+    1. Direct binding is used to send messages form one orchestration to another orchestration.
+    2. Orch 1 : The process will send mesaage to second orchestration
+    3. Orch 2 : This will receive message from first orchestration
+    4. In second send port : set properties as PortBindings : "Direct" and select "To receive message from other orchestration" and select second orchestration name in Orchestration 1.
+30. Difference between BizTalk server and Webservices
+31. How can we prevent orchestration from entering into suspended state (Applying error handling )
+    1. Error handling in Biztalk orchestration is handled using scope shape
+32. BizTalk Orchestration is both Subscrber and Publisher.
+33. BizTalk Server architecture is asynchronous : messages flow one way into BizTalk server.
+34. Types of schemas : document schema, property schema, flat file schema
+35. Singleton types never have more than one instance at any one time.
